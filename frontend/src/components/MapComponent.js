@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Card, CardContent, Typography } from '@mui/material';
 
 const MapComponent = () => {
   const address = "Rua Werner Habig, 831 - Chácaras Luzitana - Lote 13 Hortolandia-SP, 13187-020";

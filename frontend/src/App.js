@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 import ConfirmationForm from './components/ConfirmationForm';
 import MapComponent from './components/MapComponent';
 import Information from './components/Information';
