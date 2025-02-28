@@ -2,15 +2,14 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8000",
+  "proxy": "https://confirmation-back.onrender.com",
   "dependencies": {
-    "@material-ui/core": "^4.12.4",
-    "axios": "^1.7.9",
-    "cra-template": "1.2.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "@mui/material": "^5.10.7",
+    "axios": "^1.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
-    "web-vitals": "^4.2.4"
+    "web-vitals": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,5 +34,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
