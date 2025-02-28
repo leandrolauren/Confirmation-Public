@@ -15,7 +15,6 @@ A FastAPI application that handles birthday party confirmations, built with Pyth
 | Feature | Description |
 | --- | --- |
 | **Confirmation Router** | Handles birthday party confirmation requests |
-| **User Authentication** | Implemented using JavaScript and React. |
 | **Real-time Updates** | Utilizes WebSockets for real-time data updates. |
 
 ## Endpoints
