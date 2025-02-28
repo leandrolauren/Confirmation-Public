@@ -1,5 +1,3 @@
-**_README generated with BeeGen tool._**
-
 # Birthday Party Confirmation API
 
 A FastAPI application that handles birthday party confirmations, built with Python 3.x and leveraging the power of the uvicorn ASGI server. The project includes a single router for handling confirmation requests.
@@ -20,6 +18,26 @@ A FastAPI application that handles birthday party confirmations, built with Pyth
 | **User Authentication** | Implemented using JavaScript and React. |
 | **Real-time Updates** | Utilizes WebSockets for real-time data updates. |
 
+## Endpoints
+
+### Confirmation Router
+
+- **POST /confirm**: Endpoint to submit a birthday party confirmation.
+    - Request Body: JSON containing `name`, `email`, `phone` and `confirmation_status`.
+    - Response: JSON with confirmation details.
+
+- **GET /confirmations**: Endpoint to retrieve all confirmations.
+    - Response: JSON array of all confirmation records.
+
+## Real-time Updates
+
+- **WebSocket /ws/updates**: WebSocket endpoint for real-time updates on confirmations.
+    - Clients can connect to receive updates whenever a new confirmation is submitted.
+
+## Contribution
+
+Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+
 ## Prerequisites
 
 * Python 3.x installed on your system
@@ -32,9 +50,19 @@ A FastAPI application that handles birthday party confirmations, built with Pyth
 
 ## Instructions
 
+### Backend
+
 1. Clone the repository to your local machine using `git clone`
-2. Install dependencies by running `pip install -r requirements.txt`
-3. Run the application using `uvicorn main:app --host 127.0.0.1 --port 8000`
+2. Navigate to the backend directory: `cd backend`
+3. Install dependencies by running `pip install -r requirements.txt`
+4. Run the application using `uvicorn main:app --host 127.0.0.1 --port 8000`
+
+### Frontend
+
+1. Navigate to the frontend directory: `cd frontend`
+2. Install dependencies by running `npm install`
+3. Start the development server using `npm start`
+4. Open your browser and navigate to `http://localhost:3000` to view the application
 
 ## Contribution
 
