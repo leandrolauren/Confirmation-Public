@@ -9,6 +9,7 @@ venv/
 obj/
 .config/
 node_modules
+__pycache__
 
 # dependencies
 /node_modules
