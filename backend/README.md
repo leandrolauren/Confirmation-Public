@@ -39,4 +39,3 @@ A FastAPI application that handles birthday party confirmations, built with Pyth
 ## Contribution
 
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
-
