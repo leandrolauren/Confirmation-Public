@@ -29,7 +29,7 @@ const ConfirmationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/confirm', formData);
+      await axios.post('https://confirmation-back.onrender.com/api/confirm', formData);
       setMessage(<span style={{ color: green[500] }}>Obrigado pela Confirmação!</span>);
       clearForm();
     } catch (error) {
