@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "https://confirmation-back.onrender.com",
   "dependencies": {
+    "@emotion/react": "^11.14.0",
     "@mui/material": "^5.10.7",
     "axios": "^1.2.0",
     "react": "^18.2.0",
