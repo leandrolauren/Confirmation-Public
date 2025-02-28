@@ -8,10 +8,10 @@ from dotenv import load_dotenv
 
 # ConfirmationCreate class to handle the request of the confirmation endpoint
 class ConfirmationCreate(BaseModel):
-    name: str = Field(..., description="The name of the person confirming")
-    email: EmailStr = Field(..., description="The email of the person confirming")
+    name: str = Field(max_length=100, description="The name of the person confirming")
+    email: EmailStr = Field(max_length=150, description="The email of the person confirming")
     phone: Optional[str] = Field(
-        None, description="The phone number of the person confirming"
+        max_length=15, description="The phone number of the person confirming"
     )
     confirmation: bool = Field(
         ..., description="When the person confirms their presence"

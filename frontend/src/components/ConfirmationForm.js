@@ -49,6 +49,8 @@ const ConfirmationForm = () => {
         onChange={handleChange} 
         fullWidth 
         margin="normal"
+        required
+        maxlength="100"
         InputLabel={{ style: { color: 'white' } }}
         InputProps={{ style: { color: 'white' } }}
       />
@@ -62,6 +64,8 @@ const ConfirmationForm = () => {
         onChange={handleChange} 
         fullWidth 
         margin="normal"
+        maxlength="150"
+        required
         InputLabel={{ style: { color: 'white' } }}
         InputProps={{ style: { color: 'white' } }}
       />
@@ -74,6 +78,7 @@ const ConfirmationForm = () => {
         onChange={handleChange} 
         fullWidth 
         margin="normal"
+        maxlength="15"
         InputLabel={{ style: { color: 'white' } }}
         InputProps={{ style: { color: 'white' } }}
       />
