@@ -1,17 +1,8 @@
 from fastapi import HTTPException
 from models import Connection
-import logging, datetime
+import logging
 
-utc_now = datetime.datetime.now(datetime.timezone.utc)
-utc_now = utc_now.replace(tzinfo=datetime.timezone.utc)
-utc_now = utc_now.astimezone(datetime.timezone(datetime.timedelta(hours=-3)))
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    datefmt=utc_now.strftime("%d-%m-%Y %H:%M:%S"),
-)
-
+logger = logging.getLogger(__name__)
 
 # Function to create the table
 def create_table():
@@ -34,7 +25,7 @@ def create_table():
         return {f"success": True, "message": "Table created successfully"}
     
     except Exception as e:
-        logging.error(f"Error creating table: {e}")
+        logger.error(f"Error creating table: {e}")
         raise
 
 # Function to insert a new confirmation
@@ -59,7 +50,7 @@ def insert_confirmation(name: str, email: str, phone: str, confirmation: bool) -
         }
 
     except Exception as e:
-        logging.error(f"Error inserting confirmation: {e}")
+        logger.error(f"Error inserting confirmation: {e}")
         raise HTTPException(
             status_code=400,
             detail=f"Error inserting confirmation: {e}",
@@ -86,7 +77,7 @@ def read_confirmation() -> dict:
         return {f"success": True, "message": "Confirmations read successfully", "data": result}
     
     except Exception as e:
-        logging.error(f"Error reading confirmations: {e}")
+        logger.error(f"Error reading confirmations: {e}")
         return {f"success": False, "message": f"Error reading confirmations: {e}", "data": []}
 
 

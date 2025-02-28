@@ -1,21 +1,26 @@
-import logging
-import uvicorn
+import logging, uvicorn, datetime
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes import router as confirmation_router
-import datetime
+from zoneinfo import ZoneInfo
 
-utc_now = datetime.datetime.now(datetime.timezone.utc)
-utc_now = utc_now.replace(tzinfo=datetime.timezone.utc)
-utc_now = utc_now.astimezone(datetime.timezone(datetime.timedelta(hours=-3)))
 
+sp_timezone = ZoneInfo("America/Sao_Paulo")
+
+
+logging.Formatter.converter = lambda *args: datetime.datetime.now(sp_timezone).timetuple()
+    
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    datefmt=utc_now.strftime("%d-%m-%Y %H:%M:%S"),
-)
+    format="%(asctime)s - %(levelname)s - origin: %(name)s - message: %(message)s",
+    datefmt="%d-%m-%Y %H:%M:%S",
+    force=True,
+    )
 
-app = FastAPI(title="Birthday Party Confirmation API")
+logging.info("Starting the API")
+    
+
+app = FastAPI(title="Birthday Party Confirmation API", version="1.0.0")
 
 origins = ["*"]
 

@@ -1,19 +1,10 @@
 from fastapi import APIRouter, HTTPException, Depends, status
-import logging, os, datetime
+import logging, os
 from models import ConfirmationResponse, ConfirmationCreate
 from database import insert_confirmation, read_confirmation, validate_email
 from fastapi.security import APIKeyHeader
 
-utc_now = datetime.datetime.now(datetime.timezone.utc)
-utc_now = utc_now.replace(tzinfo=datetime.timezone.utc)
-utc_now = utc_now.astimezone(datetime.timezone(datetime.timedelta(hours=-3)))
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    datefmt=utc_now.strftime("%d-%m-%Y %H:%M:%S"),
-)
-
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
@@ -21,7 +12,7 @@ router = APIRouter()
 # Endpoint to confirm presence
 @router.post("/confirm", response_model=ConfirmationResponse)
 def create_confirmation(confirmation: ConfirmationCreate):
-    logging.info(f"New confirmation received from: {confirmation.email}")
+    logger.info(f"New confirmation received from: {confirmation.email}")
 
     # Check if the email is already in the database
     existing = validate_email(confirmation.email)
@@ -50,7 +41,7 @@ def create_confirmation(confirmation: ConfirmationCreate):
             confirmation=confirmation.confirmation,
         )
     except Exception as e:
-        logging.error(f"Error creating confirmation: {e}")
+        logger.error(f"Error creating confirmation: {e}")
         raise HTTPException(status_code=500, detail="Error creating confirmation", message=str(e))
 
 
@@ -72,8 +63,8 @@ def validate_token(token: str = Depends(api_key_scheme)) -> str:
 @router.get("/confirmations", response_model=list)
 async def get_all_confirmations(token: str = Depends(validate_token)):
 
-    logging.info({"message": "Access granted with token", "token": token})
-    logging.info("Start reading all confirmations")
+    logger.info({"message": "Access granted with token", "token": token})
+    logger.info("Start reading all confirmations")
 
     confirmations = read_confirmation()
 
@@ -90,6 +81,6 @@ async def get_all_confirmations(token: str = Depends(validate_token)):
                 "confirmation": confirmation.get("confirmation"),
             }
         )
-    logging.info("Retrieved all confirmations")
+    logger.info("Retrieved all confirmations")
     
     return result
