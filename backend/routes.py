@@ -12,6 +12,7 @@ router = APIRouter()
 # Endpoint to confirm presence
 @router.post("/confirm", response_model=ConfirmationResponse)
 def create_confirmation(confirmation: ConfirmationCreate):
+
     logger.info(f"New confirmation received from: {confirmation.email}")
 
     # Check if the email is already in the database
@@ -30,6 +31,8 @@ def create_confirmation(confirmation: ConfirmationCreate):
             confirmation.email,
             confirmation.phone,
             confirmation.confirmation,
+            confirmation.qtt_adult,
+            confirmation.qtt_child,
         )
 
         # Return the confirmation
@@ -42,10 +45,13 @@ def create_confirmation(confirmation: ConfirmationCreate):
         )
     except Exception as e:
         logger.error(f"Error creating confirmation: {e}")
-        raise HTTPException(status_code=500, detail="Error creating confirmation", message=str(e))
+        raise HTTPException(
+            status_code=500, detail="Error creating confirmation", message=str(e)
+        )
 
 
 api_key_scheme = APIKeyHeader(name="Authorization")
+
 
 def validate_token(token: str = Depends(api_key_scheme)) -> str:
     expec_token = os.getenv("API_TOKEN")
@@ -70,7 +76,7 @@ async def get_all_confirmations(token: str = Depends(validate_token)):
 
     if confirmations.get("success") is False:
         raise HTTPException(status_code=500, detail="Error reading confirmations")
-    
+
     result = []
     for confirmation in confirmations["data"]:
         result.append(
@@ -82,5 +88,5 @@ async def get_all_confirmations(token: str = Depends(validate_token)):
             }
         )
     logger.info("Retrieved all confirmations")
-    
+
     return result
