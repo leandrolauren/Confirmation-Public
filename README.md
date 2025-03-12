@@ -1,8 +1,10 @@
 # Birthday Party Confirmation API
 
-A FastAPI application that handles birthday party confirmations, built with Python 3.x and leveraging the power of the uvicorn ASGI server. The project includes a single router for handling confirmation requests.
+Este projeto é uma aplicação FastAPI que gerencia confirmações de presença para uma festa de aniversário, construída com Python 3.x e utilizando o servidor ASGI uvicorn. O projeto inclui um frontend em React para interação com os usuários.
 
-## Technologies Used
+## Estrutura do Projeto
+
+## Tecnologias Utilizadas
 
 [![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
 [![Uvicorn](https://img.shields.io/badge/Uvicorn-ASGI%20Server-green.svg)](https://www.uvicorn.org/en/latest/)
@@ -10,59 +12,68 @@ A FastAPI application that handles birthday party confirmations, built with Pyth
 [![Language](https://img.shields.io/badge/Language-JavaScript-brightgreen.svg)](https://www.javascript.com/)
 [![Framework](https://img.shields.io/badge/Framework-React-blue.svg)](https://reactjs.org/)
 
-## Features
+## Funcionalidades
 
-| Feature | Description |
+| Funcionalidade | Descrição |
 | --- | --- |
-| **Confirmation Router** | Handles birthday party confirmation requests |
-| **Real-time Updates** | Utilizes WebSockets for real-time data updates. |
+| **Roteador de Confirmação** | Gerencia solicitações de confirmação de presença para a festa de aniversário |
+| **Atualizações em Tempo Real** | Utiliza WebSockets para atualizações em tempo real |
 
 ## Endpoints
 
-### Confirmation Router
+### Roteador de Confirmação
 
-- **POST /confirm**: Endpoint to submit a birthday party confirmation.
-    - Request Body: JSON containing `name`, `email`, `phone` and `confirmation_status`.
-    - Response: JSON with confirmation details.
+- **POST /api/confirm**: Endpoint para enviar uma confirmação de presença.
+    - Corpo da Solicitação: JSON contendo `name`, `email`, `phone` e `confirmation`.
+    - Resposta: JSON com detalhes da confirmação.
 
-- **GET /confirmations**: Endpoint to retrieve all confirmations.
-    - Response: JSON array of all confirmation records.
+- **GET /api/confirmations**: Endpoint para recuperar todas as confirmações.
+    - Resposta: Array JSON de todos os registros de confirmação.
 
-## Real-time Updates
+## Variáveis de Ambiente
 
-- **WebSocket /ws/updates**: WebSocket endpoint for real-time updates on confirmations.
-    - Clients can connect to receive updates whenever a new confirmation is submitted.
+- **O arquivo `.env` no diretório `backend` deve conter as seguintes variáveis de ambiente para configurar a conexão com o banco de dados PostgreSQL:**
+    - **DB_NAME**="nome_do_banco". 
+    - **DB_USER**="usuario_do_banco".
+    - **DB_PASSWORD**="senha_do_banco". 
+    - **DB_HOST**="host_do_banco".
+    - **DB_PORT**="porta_do_banco".
 
-## Contribution
+- **Também deve conter o Token fixo** para validação no endpoint /confirmations.
+    - **API_TOKEN**="token_da_api"
 
-Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+## Banco de Dados
 
-## Prerequisites
+- **Este projeto requer um banco de dados PostgreSQL.** Certifique-se de ter um banco de dados PostgreSQL configurado e rodando. As variáveis de ambiente no arquivo `.env` devem ser configuradas corretamente para que a aplicação possa se conectar ao banco de dados.
 
-* Python 3.x installed on your system
-* Uvicorn ASGI server installed (`pip install uvicorn`)
-* FastAPI web framework installed (`pip install fastapi`)
-* Node.js (version 14 or higher)
-* npm (version 6 or higher)
-* A code editor or IDE of your choice
-* Basic understanding of JavaScript, React, and WebSockets
-
-## Instructions
+## Instruções
 
 ### Backend
 
-1. Clone the repository to your local machine using `git clone`
-2. Navigate to the backend directory: `cd backend`
-3. Install dependencies by running `pip install -r requirements.txt`
-4. Run the application using `uvicorn main:app --host 127.0.0.1 --port 8000`
+1. Clone o repositório para sua máquina local usando `git clone`
+2. Navegue até o diretório backend: `cd backend`
+3. Instale as dependências executando `pip install -r requirements.txt`
+4. Execute a aplicação usando `uvicorn main:app --host 127.0.0.1 --port 8000`
 
 ### Frontend
 
-1. Navigate to the frontend directory: `cd frontend`
-2. Install dependencies by running `npm install`
-3. Start the development server using `npm start`
-4. Open your browser and navigate to `http://localhost:3000` to view the application
+1. Navegue até o diretório frontend: `cd frontend`
+2. Instale as dependências executando `npm install`
+3. Inicie o servidor de desenvolvimento usando `npm start`
+4. Abra seu navegador e navegue até `http://localhost:3000` para visualizar a aplicação
 
-## Contribution
+### Docker
 
-Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+Você também pode usar Docker para rodar a aplicação. Certifique-se de ter o Docker e o Docker Compose instalados.
+
+1. Navegue até o diretório raiz do projeto
+2. Execute `docker-compose up --build`
+3. A aplicação backend estará disponível em `http://localhost:8000` e o frontend em `http://localhost:3000`
+
+## Contribuição
+
+Contribuições são bem-vindas! Por favor, faça um fork do repositório e envie um pull request com suas alterações.
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
