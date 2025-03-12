@@ -18,10 +18,15 @@ class ConfirmationCreate(BaseModel):
         ..., description="When the person confirms their presence"
     )
     qtt_adult: int = Field(
-        ..., ge=1, description="Number of adults in invite", title="Number of Adults"
+        ...,
+        max_length=10,
+        ge=1,
+        description="Number of adults in invite",
+        title="Number of Adults",
     )
     qtt_child: int = Field(
         ...,
+        max_length=10,
         ge=0,
         description="Number of children in invite",
         title="Number of Children",
