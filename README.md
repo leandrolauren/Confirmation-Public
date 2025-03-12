@@ -24,7 +24,7 @@ Este projeto é uma aplicação FastAPI que gerencia confirmações de presença
 ### Roteador de Confirmação
 
 - **POST /api/confirm**: Endpoint para enviar uma confirmação de presença.
-    - Corpo da Solicitação: JSON contendo `name`, `email`, `phone` e `confirmation`.
+    - Corpo da Solicitação: JSON contendo `name`, `email`, `phone`, `confirmation`, `qtt_adult` e `qtt_child`.
     - Resposta: JSON com detalhes da confirmação.
 
 - **GET /api/confirmations**: Endpoint para recuperar todas as confirmações.
